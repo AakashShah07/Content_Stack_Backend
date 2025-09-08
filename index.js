@@ -1,42 +1,21 @@
 const express = require("express");
+const connectDB = require("./Database/db");
+require("dotenv").config();
+
 const app = express();
 
-require("dotenv").config();
-const contentstack = require("contentstack");
-
-const Stack = contentstack.Stack({
-  api_key: process.env.CONTENTSTACK_API_KEY,
-  delivery_token: process.env.DELIVERY_TOKEN,
-  environment: process.env.CONTENTSTACK_ENVIRONMENT,
-   region: contentstack.Region.EU, 
-
-});
+// Connect Database
+connectDB();
+app.use(express.json());
 
 
-app.get("/", async (req, res) => {
- try {
-    const query = Stack.ContentType("test").Query();
-    query
-    .where("title")
-    .includeContentType()
-    .includeCount()
-    .toJSON()
-    .find()
-    .then(function success(result) { }, function error(err) {
-        // err object
-    })
-    const result = await query.find();
+// Import routes
+const entriesRoutes = require("./routes/entriesRoute");
 
-    result[0].forEach((entry) => {
-      console.log("Title:", entry.title);
-    });
-  } catch (err) {
-    console.error("Error fetching entries:", err);
-  }
-  res.send("Hello World from Node.js!");
-});
+// Use routes
+app.use("/entries", entriesRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
