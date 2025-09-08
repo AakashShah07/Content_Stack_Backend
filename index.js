@@ -6,6 +6,8 @@ const app = express();
 
 // Connect Database
 connectDB();
+app.use(express.json());
+
 
 // Import routes
 const entriesRoutes = require("./routes/entriesRoute");
