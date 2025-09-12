@@ -17,18 +17,25 @@ router.get("/", async (req, res) => {
       return res.status(404).json({ error: "❌ Entry not found" });
     }
 
+    const savedDocs = []
+
     for (const entry of fullEntry) {
       console.log("📌 Entry from Contentstack:", entry);
 
-      await Entry.findOneAndUpdate(
+      const savedDoc = await Entry.findOneAndUpdate(
         { contentstackId: entry.uid },
         { title: entry.title, contentstackId: entry.uid },
         { upsert: true, new: true }
       );
+      savedDocs.push(savedDoc);
     }
 
     console.log("✅ Saved in MongoDB:");
-    res.json({ message: "Entries saved successfully!" });
+     res.json({
+      message: "Entries fetched and saved successfully!",
+      fetchedEntries: fullEntry,
+      mongoEntries: savedDocs,
+    });
 
   } catch (err) {
     console.error("Error fetching entries:", err);
