@@ -48,6 +48,8 @@ console.log("Webhook hit:");
             locale: entry.locale,
             created_at: entry.created_at,
             updated_at: entry.updated_at,
+            imageUrl: entry.imageUrl,
+            publishedAt: entry.publishedAt,
             embedding: vector, // ⬅️ store embedding
           },
           { upsert: true, new: true, setDefaultsOnInsert: true }

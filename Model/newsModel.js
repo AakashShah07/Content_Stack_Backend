@@ -12,6 +12,8 @@ const newsSchema = new mongoose.Schema(
     content: String,
     locale: String,
     created_at: Date,
+    imageUrl: String,
+    publishedAt: Date,
     updated_at: Date,
     embedding: [Number],   // vector from your embedder
   }

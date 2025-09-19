@@ -19,13 +19,7 @@ async function searchEntry(query) {
     await mongoose.connect(process.env.MONGODB_URI);
     
     const doc = await mongoose.connection.db.collection('news').findOne();
-    console.log(doc.embedding.length); // should print 3072
-    
-    // const embedder = await pipeline(
-    //   "feature-extraction",
-    //   "Xenova/all-MiniLM-L6-v2"
-    // ); 
-
+    console.log(doc.embedding.length); 
     const queryVector = await generateEmbedding(query);
     
       // 2. Run Atlas vector search
