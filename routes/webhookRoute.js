@@ -27,6 +27,7 @@ console.log("Webhook hit:");
         
     const entry = req.body.data.entry;    // contains the updated/created entry
 
+
     if (!entry || !entry.uid) {
       return res.status(400).send("Invalid payload");
     }
@@ -48,8 +49,8 @@ console.log("Webhook hit:");
             locale: entry.locale,
             created_at: entry.created_at,
             updated_at: entry.updated_at,
-            imageUrl: entry.imageUrl,
-            publishedAt: entry.publishedAt,
+            imageUrl: entry.image,
+            publishedAt: entry.publishedat,
             embedding: vector, // ⬅️ store embedding
           },
           { upsert: true, new: true, setDefaultsOnInsert: true }
