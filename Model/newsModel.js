@@ -16,6 +16,7 @@ const newsSchema = new mongoose.Schema(
     publishedAt: Date,
     updated_at: Date,
     embedding: [Number],   // vector from your embedder
+    category: String, // e.g. "technology", "sports", etc.
   }
 );
 

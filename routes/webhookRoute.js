@@ -48,6 +48,7 @@ console.log("Webhook hit:");
             content: entry.content,
             locale: entry.locale,
             created_at: entry.created_at,
+            category: entry.category,
             updated_at: entry.updated_at,
             imageUrl: entry.image,
             publishedAt: entry.publishedat,
