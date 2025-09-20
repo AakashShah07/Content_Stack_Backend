@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const { pipeline } = require("@xenova/transformers");
 
 require("dotenv").config();
 
@@ -19,7 +18,7 @@ async function searchEntry(query) {
     await mongoose.connect(process.env.MONGODB_URI);
     
     const doc = await mongoose.connection.db.collection('news').findOne();
-    console.log(doc.embedding.length); 
+    // console.log(doc.embedding.length); 
     const queryVector = await generateEmbedding(query);
     
       // 2. Run Atlas vector search

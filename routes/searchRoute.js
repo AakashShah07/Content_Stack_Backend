@@ -5,7 +5,7 @@ const connectDB = require("../Database/db.js");
 const { searchEntry } = require("../api_endPoints/search/methods.js");
 
 // GET THE BODY
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     await connectDB();
     const { query } = req.body;
@@ -21,6 +21,8 @@ router.get("/", async (req, res) => {
       fetchedEntries: results,
       //   mongoEntries: savedDocs,
     });
+
+    console.log("Search results:", results.length);
   } catch (err) {
     console.error("Error fetching entries:", err);
     res.status(500).json({ error: err.message });
