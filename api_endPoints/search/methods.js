@@ -1,3 +1,4 @@
+const { cat } = require("@xenova/transformers");
 const mongoose = require("mongoose");
 
 require("dotenv").config();
@@ -31,7 +32,7 @@ async function searchEntry(query) {
               path: "embedding",
               queryVector,
               numCandidates: 300,          // how many docs to consider
-              limit: 10,                    // how many top matches to return
+              limit: 80,                    // how many top matches to return
               similarity: "cosine"         // must match your index similarity
             }
           },
@@ -41,6 +42,10 @@ async function searchEntry(query) {
               description: 1,
               publishedAt: 1,
               content:1,
+              author:1,
+              imageUrl:1,
+              url:1,
+              category:1,
               score: { $meta: "vectorSearchScore" } // show similarity score
               
             }
