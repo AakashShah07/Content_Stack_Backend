@@ -1,4 +1,3 @@
-const { cat } = require("@xenova/transformers");
 const mongoose = require("mongoose");
 
 require("dotenv").config();
