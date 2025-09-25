@@ -6,7 +6,7 @@ This service ingests news articles from Contentstack webhooks, enriches them wit
 ## Related Repositories
 
 - [Frontend UI](https://github.com/AakashShah07/Content_stack_UI)
-    :  React-based interface to browse, search, and visualize the news feed.
+    :  Next-based interface to browse, search, and visualize the news feed.
 
 - [News Updater](https://github.com/AakashShah07/News-Updates) : Scheduled service that fetches & pushes topic/country news to the backend.
 
@@ -97,7 +97,7 @@ npm install
 cp .env.example .env    # then edit with your values
 
 # 4. Run development server
-npm start
+node index.js
 # Server runs on http://localhost:3000
 
 ```
